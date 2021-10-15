@@ -1,0 +1,85 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "src/**/*.spec.ts",
+    "src/**/typings.d.ts",
+    "src/**/test.ts",
+    "src/jestGlobalMocks.ts",
+    "src/setupJest.ts"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["./src/tsconfig.eslint.json"],
+        "createDefaultProgram": false
+      },
+      "extends": [
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "plugins": ["eslint-plugin-no-null"],
+      "rules": {
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/no-empty-function": "error",
+        "@typescript-eslint/no-inferrable-types": "error",
+        "@typescript-eslint/no-require-imports": "error",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@angular-eslint/component-selector": [2, { "type": "element", "prefix": "ngx", "style": "kebab-case" }],
+        "@angular-eslint/directive-selector": [2, { "type": "attribute", "prefix": "ngx", "style": "camelCase" }],
+        "@typescript-eslint/naming-convention": [
+          2,
+          {
+            "selector": "variable",
+            "format": ["camelCase", "UPPER_CASE"],
+            "filter": {
+              "regex": "^NGX([A-Z][a-z0-9]+)((d)|([A-Z0-9][a-z0-9]+))*([A-Z])?\\$?$",
+              "match": false
+            }
+          }
+        ],
+        "no-shadow": "off",
+        "brace-style": ["off", "1tbs"],
+        "comma-dangle": "off",
+        "complexity": [
+          "error",
+          {
+            "max": 10
+          }
+        ],
+        "default-case": "error",
+        "max-len": [
+          "error",
+          {
+            "code": 200
+          }
+        ],
+        "max-lines": ["error", 1000],
+        "no-constant-condition": "error",
+        "no-empty": "error",
+        "no-null/no-null": "off",
+        "no-redeclare": "error",
+        "prefer-const": [
+          "error",
+          {
+            "destructuring": "all"
+          }
+        ],
+        "no-underscore-dangle": 0,
+        "no-console": ["error", { "allow": ["warn", "error"] }]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}
