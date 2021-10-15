@@ -34,10 +34,11 @@ export const NGXSecurizeMethod =
       const initializedConf = initializeMethodDecoratorConf(conf);
       const logger = initializedConf.debug ? log : noLog;
 
-      /* eslint-enable prefer-arrow/prefer-arrow-functions */
+      /* eslint-disable prefer-arrow/prefer-arrow-functions */
       // eslint-disable-next-line space-before-function-paren
       const wrapped = function (...args: any[]) {
-        const serviceFactory = target[NGXSecurizeFactoryAccesor];
+        /* eslint-enable prefer-arrow/prefer-arrow-functions */
+        const serviceFactory = this[NGXSecurizeFactoryAccesor];
         const service: NGXSecurizeService = serviceFactory();
 
         if (service?.[NGXSecurizeEnvAccesor]() === NGXSecurizeEnvEnum.PROD) {
