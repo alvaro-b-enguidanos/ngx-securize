@@ -16,13 +16,13 @@ const factory = (userService: UserService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // NGXSecurizeModule.forRoot({
-    //   useProvider: {
-    //     provide: NGXSecurizeResolver,
-    //     useFactory: factory,
-    //     deps: [UserService],
-    //   },
-    // }),
+    NGXSecurizeModule.forRoot({
+      useProvider: {
+        provide: NGXSecurizeResolver,
+        useFactory: factory,
+        deps: [UserService],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

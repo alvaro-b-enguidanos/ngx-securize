@@ -27,7 +27,7 @@ ${context}
 };
 
 export const NGXSecurizeMethod =
-  (params?: any, conf?: NGXSecurizeMethodConf) =>
+  (param?: any, conf?: NGXSecurizeMethodConf) =>
   <T>(target: T, propertyKey: string, descriptor: PropertyDescriptor) => {
     try {
       const original = descriptor.value;
@@ -42,8 +42,8 @@ export const NGXSecurizeMethod =
         const service: NGXSecurizeService = serviceFactory();
 
         if (service?.[NGXSecurizeEnvAccesor]() === NGXSecurizeEnvEnum.PROD) {
-          const canAcces = service.check(params);
-          logger(propertyKey, canAcces, params, args);
+          const canAcces = service.check(param);
+          logger(propertyKey, canAcces, param, args);
 
           if (!canAcces) {
             return noop;

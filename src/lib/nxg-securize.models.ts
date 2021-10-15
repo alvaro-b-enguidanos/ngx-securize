@@ -1,7 +1,7 @@
 import { FactoryProvider } from '@angular/core';
 
 export interface NGXSecurizeAPI {
-  check: (...args: any[]) => boolean;
+  check: (arg: any) => boolean;
 }
 
 export interface NGXSecurizeProvider {
@@ -17,6 +17,4 @@ export enum NGXSecurizeEnvEnum {
   PROD = 'PROD',
 }
 
-export type NGXSecurizeEnvType =
-  | NGXSecurizeEnvEnum.PROD
-  | NGXSecurizeEnvEnum.TEST;
+export type NGXSecurizeEnvType = NGXSecurizeEnvEnum.PROD | NGXSecurizeEnvEnum.TEST;

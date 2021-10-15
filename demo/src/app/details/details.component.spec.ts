@@ -1,36 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NGXSecurizeTestingModule } from 'ngx-securize';
-import { AppComponent } from './app.component';
+import { DetailsComponent } from './details.component';
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
+describe('DetailsComponent', () => {
+  let fixture: ComponentFixture<DetailsComponent>;
+  let component: DetailsComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, NGXSecurizeTestingModule],
-      declarations: [AppComponent],
+      declarations: [DetailsComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(DetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   test('should create the app', () => {
     expect(component).toBeTruthy();
-  });
-
-  test(`should have as title 'demo'`, () => {
-    expect(component.title).toEqual('demo');
-  });
-
-  test('should render title', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('demo app is running!');
   });
 
   it('should have a say method', () => {
