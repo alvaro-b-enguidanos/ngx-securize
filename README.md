@@ -1,6 +1,6 @@
 # NGX-SECURIZE
 
-[![QA](https://github.com/candyman00/angular-securize/actions/workflows/QA.js.yml/badge.svg)](https://github.com/candyman00/angular-securize/actions/workflows/QA.js.yml)
+[![QA](https://github.com/candyman00/ngx-securize/actions/workflows/QA.js.yml/badge.svg)](https://github.com/candyman00/ngx-securize/actions/workflows/QA.js.yml)
 [![publish](https://github.com/candyman00/angular-securize/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/candyman00/angular-securize/actions/workflows/npm-publish.yml)
 
 ![Angular](https://badgen.net/badge/Angular/12/red)
