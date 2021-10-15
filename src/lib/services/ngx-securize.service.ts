@@ -21,8 +21,8 @@ export class NGXSecurizeService implements NGXSecurizeAPI {
     this.setEnv(this.env);
   }
 
-  public check(...args: any[]): boolean {
-    return this[NGXSecurizeConfAccesor]().check(...args);
+  public check(arg: any): boolean {
+    return this[NGXSecurizeConfAccesor]().check(arg);
   }
 
   public [NGXSecurizeEnvAccesor](): NGXSecurizeEnvType {

@@ -24,16 +24,16 @@ chrome-profiler-events*.json
 
 # IDE - VSCode
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
 .history/*
 
 # misc
 /.sass-cache
 /connect.lock
-/coverage
+/**/coverage
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log

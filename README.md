@@ -16,15 +16,83 @@
   - [Considerations & Requisites](#considerations--requisites)
   - [Usage](#usage)
     - [Import](#import)
+    - [NGXSecurizeResolver](#ngxsecurizeresolver)
+    - [Models](#models)
     - [Using the decorators](#using-the-decorators)
     - [Testing](#testing)
   - [Author](#author)
 
 ## About
 
+ngx-securize is a solution that wants to help you to manage the securitization of your code, avoiding code redundancy and eliminating repetitive test by doing it in an elegant way, based on decorators.
+
 ## Motivation
 
+If you used to work with securized apps, where you have to check some kind of permission from an user, you probably will end up with some common tasks, like guards, directives, etc. That are meant to show/hide information to the user.
+
+Angular already gives you the tools to build this mechanisms. However. What about invoking some method inside a component?
+
+In this case, you will end up with something like this:
+
+```typescript
+const allowedRoles = ['read', 'write'];
+
+@Component({})
+export class MyComponent {
+  constructor(private userService: UserService) {}
+
+  someMethod() {
+    const userHasRoles = this.userService.hasRoles(allowedRoles);
+
+    if (!userHasRoles) {
+      return;
+    }
+
+    // some logic
+  }
+}
+```
+
+if this seems you familiar, you may be interesting on continue reading.
+
+You can notice 3 things on the above code:
+
+- You have to inject some kind of service to provide some security context to the component
+- You have to manually call to the service. Every single time.
+- You have an `if` statement on your method. so you have to test 2 cases instead of one. You have 50 method that implements this pattern? yo have make 50 test just to test those `if`
+
+...and we don't like to waste efforts.
+
+So `ngx-securize` comes to help you to remove this 3 points
+
+You just need to provide an implementation to handle your specific case. In this example, you need to connect the library with the `UserService` and decorate the methods that you want.
+
+And with that, you will achive:
+
+- you just have to define the implementation once. No needed for calling it n times.
+- The decorator manages that implementation, so there is no need for `if` statements
+- since there is no `if` statement, you don need to test them :D
+
+so, how the above code looks like with `ngx-securize`?
+
+```typescript
+const allowedRoles = ['read', 'write'];
+
+@Component({})
+@NGXSecurizeClass()
+export class MyComponent {
+  @NGXSecurizeMethod(allowedRoles)
+  someMethod() {
+    // some logic
+  }
+}
+```
+
 ## Considerations & Requisites
+
+The library is compiled using IVY, so make sure that your app, is running IVY too (if you are using angular v12+, this is the default)
+
+In relation with that, the library is meant to be used in Angular v12+
 
 ## Usage
 
@@ -61,7 +129,7 @@ export class AppModule {}
 
 Note that the factory provided to the module, should return an `NGXSecurizeAPI` object. But the actual implementation is completly up to you.
 
-In this example, i use a `UserService` that looks for an especific role/s, but you can configure the module, with whatever is your need. Just be sure that if you use an angular service, you need to provide it into the `deps` array.
+In this example, i use a `UserService` that looks for an especific role/s, but you can configure the module with whatever is your need. Just be sure that if you use an angular service, you need to provide it into the `deps` array.
 
 ```typescript
 // user.service.ts
@@ -91,9 +159,77 @@ export class UserService {
 }
 ```
 
+### NGXSecurizeResolver
+
+in this example:
+
+```typescript
+// app.module.ts
+const factory = (userService: UserService) => {
+  const providedApi: NGXSecurizeAPI = {
+    check: (role: string | string[]) => userService.userHasRole(role),
+  };
+  return new NGXSecurizeResolver(providedApi);
+};
+```
+
+```typescript
+
+// xxx.component.ts
+  @NGXSecurizeMethod(['some:role'])
+  someMethod() {
+    // some logic
+  }
+```
+
+the `check` callback will be invoked with `['some:role']`
+
+The implementation itself, is completely up to you. You can do something completely different like: (the example is kind of useless, but you get the point)
+
+```typescript
+// app.module.ts
+const factory = (userService: UserService) => {
+  const providedApi: NGXSecurizeAPI = {
+    check: (year: number) => userService.userIsOlderThanYears(years),
+  };
+  return new NGXSecurizeResolver(providedApi);
+};
+```
+
+```typescript
+
+// xxx.component.ts
+  @NGXSecurizeMethod(21)
+  someMethod() {
+    // some logic
+  }
+```
+
+### Models
+
+```typescript
+interface NGXSecurizeAPI {
+  check: (arg: any) => boolean;
+}
+```
+
 ### Using the decorators
 
+Once you configure the module, you are able to use the [decorators](./src/lib/decorators/README.md)
+
 ### Testing
+
+In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is wat you want ), just import the `NGXSecurizeTestingModule` like so:
+
+```typescript
+TestBed.configureTestingModule({
+  imports: [
+    NGXSecurizeTestingModule
+    ...,
+  ],
+  ...
+});
+```
 
 ## Author
 
