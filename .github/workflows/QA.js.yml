@@ -5,9 +5,9 @@ name: QA
 
 on:
   push:
-    branches: [main, develop, releases/**]
+    branches: [main, develop, release/**]
   pull_request:
-    branches: [main, develop, releases/**]
+    branches: [main, develop, release/**, feature/**]
 
 jobs:
   QA:
