@@ -1,0 +1,84 @@
+{
+  "name": "ngx-securize",
+  "version": "0.1200.0",
+  "author": {
+    "name": "Álvaro B Enguidanos",
+    "email": "alvaro.bellido.enguidanos+ngx_securize@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "typescript"
+  ],
+  "repository": {
+    "url": "https://github.com/candyman00/ngx-securize",
+    "type": "git"
+  },
+  "scripts": {
+    "ng": "ng",
+    "qa": "npm run lint && npm run test",
+    "start": "ng serve --open --hmr demo",
+    "clean:dist": "rimraf dist",
+    "prebuild": "npm run clean:dist",
+    "build": "ng build",
+    "test": "npm run coverage",
+    "test:app": "jest --config ./demo/jest.config.js --coverage",
+    "test:dev": "npm run coverage -- --maxWorkers=50%",
+    "coverage": "jest --coverage",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "prepare": "husky install",
+    "pretty-quick": "pretty-quick --staged",
+    "lint": "ng lint ngx-securize",
+    "lint:commit": "commitlint -e $1"
+  },
+  "private": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "12.2.9",
+    "@angular/animations": "12.2.0",
+    "@angular/cli": "12.2.9",
+    "@angular/common": "12.2.0",
+    "@angular/compiler": "12.2.0",
+    "@angular/compiler-cli": "12.2.0",
+    "@angular/core": "12.2.0",
+    "@angular/forms": "12.2.0",
+    "@angular/platform-browser": "12.2.0",
+    "@angular/platform-browser-dynamic": "12.2.0",
+    "@angular-eslint/builder": "12.1.0",
+    "@angular-eslint/eslint-plugin": "12.1.0",
+    "@angular-eslint/eslint-plugin-template": "12.1.0",
+    "@angular-eslint/schematics": "12.1.0",
+    "@angular-eslint/template-parser": "12.1.0",
+    "@angular/router": "12.2.0",
+    "@commitlint/cli": "12.1.4",
+    "@commitlint/config-conventional": "12.1.4",
+    "@types/jest": "27.0.2",
+    "@types/node": "15.6.1",
+    "@typescript-eslint/eslint-plugin": "4.26.0",
+    "@typescript-eslint/parser": "4.26.0",
+    "conventional-changelog": "3.1.24",
+    "conventional-changelog-cli": "2.1.1",
+    "eslint": "7.27.0",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-jsdoc": "35.1.2",
+    "eslint-plugin-no-null": "1.0.2",
+    "eslint-plugin-prefer-arrow": "1.2.3",
+    "husky": "7.0.2",
+    "jest": "27.2.5",
+    "jest-preset-angular": "10.0.1",
+    "jest-transform-stub": "2.0.0",
+    "ng-packagr": "12.1.1",
+    "prettier": "2.3.0",
+    "pretty-quick": "3.1.0",
+    "rimraf": "3.0.2",
+    "rxjs": "6.6.0",
+    "typescript": "4.3.5",
+    "ts-node": "10.3.0",
+    "zone.js": "0.11.4"
+  },
+  "engines": {
+    "node": "^14.15.0",
+    "npm": "^6.14.0"
+  }
+}
