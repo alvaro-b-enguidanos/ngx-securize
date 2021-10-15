@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@angular/*": ["../node_modules/@angular/*"],
+      "ngx-securize": ["./src"]
+    }
+  },
+  "files": ["./src/main.ts", "./src/polyfills.ts"],
+  "exclude": ["../demo/src/test.ts", "**/*.spec.ts", "**/*.json"]
+}
