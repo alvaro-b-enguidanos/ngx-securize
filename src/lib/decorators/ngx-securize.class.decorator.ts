@@ -1,17 +1,18 @@
-import { NGXSecurizeResolverAccesor, NGXSecurizeFactoryAccesor } from '../ngx-securize.constants';
-import { NGXSecurizeModule } from '../ngx-securize.module';
-import { NGXSecurizeService } from '../services';
+import { SECURIZE_RESOLVER_ACCESOR, SECURIZE_FACTORY_ACCESOR } from '../ngx-securize.constants';
+import { SecurizeModule } from '../ngx-securize.module';
+import { SecurizeService } from '../services';
 import { defineAndSeal } from '../utils';
 
-export const NGXSecurizeClass =
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const SecurizeClass =
   () =>
   <T extends new (...args: any[]) => unknown>(constructor: T) => {
     try {
-      const serviceFactory = (): NGXSecurizeService => NGXSecurizeModule[NGXSecurizeResolverAccesor]();
+      const serviceFactory = (): SecurizeService => SecurizeModule[SECURIZE_RESOLVER_ACCESOR]();
 
-      defineAndSeal<T, () => NGXSecurizeService>(constructor.prototype, serviceFactory, NGXSecurizeFactoryAccesor);
+      defineAndSeal<T, () => SecurizeService>(constructor.prototype, serviceFactory, SECURIZE_FACTORY_ACCESOR);
     } catch (error) {
-      console.error(`:: NGXSecurizeClass :: ${error}`);
+      console.error(`:: SecurizeClass :: ${error}`);
     }
 
     return constructor;

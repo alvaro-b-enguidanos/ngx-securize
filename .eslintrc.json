@@ -38,11 +38,7 @@
           2,
           {
             "selector": "variable",
-            "format": ["camelCase", "UPPER_CASE"],
-            "filter": {
-              "regex": "^NGX([A-Z][a-z0-9]+)((d)|([A-Z0-9][a-z0-9]+))*([A-Z])?\\$?$",
-              "match": false
-            }
+            "format": ["camelCase", "UPPER_CASE"]
           }
         ],
         "no-shadow": "off",

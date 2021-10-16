@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { NGXSecurizeModule } from './ngx-securize.module';
-import { NGXSecurizeEnvTesting } from './ngx-securize.constants';
-import { NGXSecurizeInjectorEnv } from './ngx-securize.injector';
+import { SecurizeModule } from './ngx-securize.module';
+import { SECURIZE_ENV_TESTING } from './ngx-securize.constants';
+import { SECURIZE_INJECTOR_ENV } from './ngx-securize.injector';
 
 @NgModule({
-  imports: [NGXSecurizeModule.forRoot()],
+  imports: [SecurizeModule.forRoot()],
   providers: [
     {
-      provide: NGXSecurizeInjectorEnv,
-      useValue: NGXSecurizeEnvTesting,
+      provide: SECURIZE_INJECTOR_ENV,
+      useValue: SECURIZE_ENV_TESTING,
     },
   ],
 })
-export class NGXSecurizeTestingModule {}
+export class SecurizeTestingModule {}

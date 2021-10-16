@@ -2,39 +2,39 @@
 
 Decorators from the [ngx-securize](../../../README.md) library.
 
-## NGXSecurizeClass
+## SecurizeClass
 
-You have to decorate your components in order to secure its method. To do it so, you just need to use the `@NGXSecurizeClass` decorator between the class declaration and the `@Component` decorator.
+You have to decorate your components in order to secure its method. To do it so, you just need to use the `@SecurizeClass` decorator between the class declaration and the `@Component` decorator.
 
-_NOTE:_ It's important to use the `@NGXSecurizeClass` before the `@Component`
+_NOTE:_ It's important to use the `@SecurizeClass` before the `@Component`
 
 example:
 
 ```typescript
 @Component({})
-@NGXSecurizeClass()
+@SecurizeClass()
 export class MyComponent {}
 ```
 
-## NGXSecurizeMethod
+## SecurizeMethod
 
 Once you decorate your class, you can proceed to decorate the methods that you want.
 
 ```typescript
 @Component({})
-@NGXSecurizeClass()
+@SecurizeClass()
 export class MyComponent {
-  @NGXSecurizeMethod(['read'])
+  @SecurizeMethod(['read'])
   someMethod() {
     // your logic
   }
 
-  @NGXSecurizeMethod(['read', 'write'])
+  @SecurizeMethod(['read', 'write'])
   anotherMethod() {
     // your logic
   }
 
-  @NGXSecurizeMethod(['read', 'delete'], {
+  @SecurizeMethod(['read', 'delete'], {
     debug: true,
   })
   andAnotherOneMethod() {
@@ -47,15 +47,15 @@ _NOTE:_ The first param of the decorator, is completly up to you. In this exampl
 
 ### API
 
-| param | description                                                 | type                  |
-| ----- | ----------------------------------------------------------- | --------------------- |
-| arg0  | params that you want to pass to your `check` implementation | any                   |
-| arg1? | decorator config                                            | NGXSecurizeMethodConf |
+| param | description                                                 | type               |
+| ----- | ----------------------------------------------------------- | ------------------ |
+| arg0  | params that you want to pass to your `check` implementation | any                |
+| arg1? | decorator config                                            | SecurizeMethodConf |
 
 ### Models
 
 ```typescript
-interface NGXSecurizeMethodConf {
+interface SecurizeMethodConf {
   debug?: boolean; // set debug to `true` will display some information on your console.
 }
 ```

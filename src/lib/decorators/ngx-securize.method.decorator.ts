@@ -1,11 +1,11 @@
-import { NGXSecurizeEnvAccesor, NGXSecurizeFactoryAccesor } from '../ngx-securize.constants';
-import { NGXSecurizeMethodConf, NGXSecurizeEnvEnum } from '../nxg-securize.models';
-import { NGXSecurizeService } from '../services';
+import { SECURIZE_ENV_ACCESOR, SECURIZE_FACTORY_ACCESOR } from '../ngx-securize.constants';
+import { SecurizeMethodConf, SecurizeEnvEnum } from '../nxg-securize.models';
+import { SecurizeService } from '../services';
 import { initializeMethodDecoratorConf } from '../utils';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
-const context = ':: NGXSecurizeMethod ::';
+const context = ':: SecurizeMethod ::';
 const noLog = (
   propertyKey: string,
   result: boolean,
@@ -26,8 +26,9 @@ ${context}
   console.log('%c%s', styles, message);
 };
 
-export const NGXSecurizeMethod =
-  (param?: any, conf?: NGXSecurizeMethodConf) =>
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const SecurizeMethod =
+  (param?: any, conf?: SecurizeMethodConf) =>
   <T>(target: T, propertyKey: string, descriptor: PropertyDescriptor) => {
     try {
       const original = descriptor.value;
@@ -38,10 +39,10 @@ export const NGXSecurizeMethod =
       // eslint-disable-next-line space-before-function-paren
       const wrapped = function (...args: any[]) {
         /* eslint-enable prefer-arrow/prefer-arrow-functions */
-        const serviceFactory = this[NGXSecurizeFactoryAccesor];
-        const service: NGXSecurizeService = serviceFactory();
+        const serviceFactory = this[SECURIZE_FACTORY_ACCESOR];
+        const service: SecurizeService = serviceFactory();
 
-        if (service?.[NGXSecurizeEnvAccesor]() === NGXSecurizeEnvEnum.PROD) {
+        if (service?.[SECURIZE_ENV_ACCESOR]() === SecurizeEnvEnum.PROD) {
           const canAcces = service.check(param);
           logger(propertyKey, canAcces, param, args);
 

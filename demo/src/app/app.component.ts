@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NGXSecurizeClass, NGXSecurizeMethod } from 'ngx-securize';
+import { SecurizeClass, SecurizeMethod } from 'ngx-securize';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-@NGXSecurizeClass()
+@SecurizeClass()
 export class AppComponent implements OnInit {
   title = 'demo';
 
@@ -19,24 +19,24 @@ export class AppComponent implements OnInit {
     this.say4('foo');
   }
 
-  @NGXSecurizeMethod(['read'])
+  @SecurizeMethod(['read'])
   say() {
     console.log('hi!');
   }
 
-  @NGXSecurizeMethod(['write', 'delete'])
+  @SecurizeMethod(['write', 'delete'])
   say2(txt: string) {
     console.log('hi2!', txt);
   }
 
-  @NGXSecurizeMethod('write', {
+  @SecurizeMethod('write', {
     debug: true,
   })
   say3(txt: string) {
     console.log('h3!', txt, this.title);
   }
 
-  @NGXSecurizeMethod(['delete'], {
+  @SecurizeMethod(['delete'], {
     debug: true,
   })
   say4(txt: string) {
