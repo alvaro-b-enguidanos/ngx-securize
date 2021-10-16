@@ -1,33 +1,33 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { NGXSecurizeEnvAccesor } from '../../ngx-securize.constants';
-import { NGXSecurizeInjectorEnv } from '../../ngx-securize.injector';
-import { NGXSecurizeEnvEnum, NGXSecurizeAPI } from '../../nxg-securize.models';
-import { NGXSecurizeResolver } from '../ngx-securize.resolver.service';
-import { NGXSecurizeService } from '../ngx-securize.service';
+import { SECURIZE_ENV_ACCESOR } from '../../ngx-securize.constants';
+import { SECURIZE_INJECTOR_ENV } from '../../ngx-securize.injector';
+import { SecurizeEnvEnum, SecurizeAPI } from '../../nxg-securize.models';
+import { SecurizeResolver } from '../ngx-securize.resolver.service';
+import { SecurizeService } from '../ngx-securize.service';
 
-describe('NGXSecurizeService', () => {
-  let service: NGXSecurizeService;
+describe('SecurizeService', () => {
+  let service: SecurizeService;
 
   describe('--> without injector', () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          providers: [NGXSecurizeService, NGXSecurizeResolver],
+          providers: [SecurizeService, SecurizeResolver],
         }).compileComponents();
       }),
     );
 
     beforeEach(() => {
-      service = TestBed.inject(NGXSecurizeService);
+      service = TestBed.inject(SecurizeService);
     });
 
     test('should exists', () => expect(service).toBeDefined());
 
-    test('(by default) should be in prod', () => expect(service['_env']).toBe(NGXSecurizeEnvEnum.PROD));
+    test('(by default) should be in prod', () => expect(service['_env']).toBe(SecurizeEnvEnum.PROD));
     test('(by default) should have not conf', () => expect(service['_conf']).toBeUndefined());
 
     test('should have a check method', () => {
-      const conf: NGXSecurizeAPI = {
+      const conf: SecurizeAPI = {
         check: roles => roles.includes('test'),
       };
       service['_conf'] = conf;
@@ -35,12 +35,12 @@ describe('NGXSecurizeService', () => {
       expect(service.check('test')).toBeTruthy();
     });
 
-    test('should have a [NGXSecurizeEnvAccesor] method', () => {
-      expect(service[NGXSecurizeEnvAccesor]()).toBe(NGXSecurizeEnvEnum.PROD);
+    test('should have a [SECURIZE_ENV_ACCESOR] method', () => {
+      expect(service[SECURIZE_ENV_ACCESOR]()).toBe(SecurizeEnvEnum.PROD);
     });
 
     test('should have a setConf method', () => {
-      const conf: NGXSecurizeAPI = {
+      const conf: SecurizeAPI = {
         check: (...args) => false,
       };
       service['setConf'](conf);
@@ -53,13 +53,13 @@ describe('NGXSecurizeService', () => {
     });
 
     test('should have a setEnv method', () => {
-      service['setEnv'](NGXSecurizeEnvEnum.TEST);
-      expect(service['_env']).toBe(NGXSecurizeEnvEnum.TEST);
+      service['setEnv'](SecurizeEnvEnum.TEST);
+      expect(service['_env']).toBe(SecurizeEnvEnum.TEST);
     });
 
     test('should have a setEnv method that ignores nullish values', () => {
       service['setEnv'](null);
-      expect(service['_env']).toBe(NGXSecurizeEnvEnum.PROD);
+      expect(service['_env']).toBe(SecurizeEnvEnum.PROD);
     });
   });
 
@@ -68,11 +68,11 @@ describe('NGXSecurizeService', () => {
       waitForAsync(() => {
         TestBed.configureTestingModule({
           providers: [
-            NGXSecurizeService,
-            NGXSecurizeResolver,
+            SecurizeService,
+            SecurizeResolver,
             {
-              provide: NGXSecurizeInjectorEnv,
-              useValue: NGXSecurizeEnvEnum.TEST,
+              provide: SECURIZE_INJECTOR_ENV,
+              useValue: SecurizeEnvEnum.TEST,
             },
           ],
         }).compileComponents();
@@ -80,9 +80,9 @@ describe('NGXSecurizeService', () => {
     );
 
     beforeEach(() => {
-      service = TestBed.inject(NGXSecurizeService);
+      service = TestBed.inject(SecurizeService);
     });
 
-    test('should be in test mode', () => expect(service['_env']).toBe(NGXSecurizeEnvEnum.TEST));
+    test('should be in test mode', () => expect(service['_env']).toBe(SecurizeEnvEnum.TEST));
   });
 });

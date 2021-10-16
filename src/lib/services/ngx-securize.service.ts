@@ -1,49 +1,49 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { NGXSecurizeAPI, NGXSecurizeEnvType } from '../nxg-securize.models';
-import { NGXSecurizeConfAccesor, NGXSecurizeEnvAccesor } from '../ngx-securize.constants';
-import { NGXSecurizeResolver } from './ngx-securize.resolver.service';
-import { NGXSecurizeServicesModule } from './ngx-securize.services.module';
-import { NGXSecurizeInjectorEnv } from '../ngx-securize.injector';
-import { NGXSecurizeEnvEnum } from '../nxg-securize.models';
+import { SecurizeAPI, SecurizeEnvType } from '../nxg-securize.models';
+import { SECURIZE_CONF_ACCESOR, SECURIZE_ENV_ACCESOR } from '../ngx-securize.constants';
+import { SecurizeResolver } from './ngx-securize.resolver.service';
+import { SecurizeServicesModule } from './ngx-securize.services.module';
+import { SECURIZE_INJECTOR_ENV } from '../ngx-securize.injector';
+import { SecurizeEnvEnum } from '../nxg-securize.models';
 
 @Injectable({
-  providedIn: NGXSecurizeServicesModule,
+  providedIn: SecurizeServicesModule,
 })
-export class NGXSecurizeService implements NGXSecurizeAPI {
-  private _conf!: NGXSecurizeAPI;
-  private _env: NGXSecurizeEnvType = NGXSecurizeEnvEnum.PROD;
+export class SecurizeService implements SecurizeAPI {
+  private _conf!: SecurizeAPI;
+  private _env: SecurizeEnvType = SecurizeEnvEnum.PROD;
 
   constructor(
-    @Optional() @Inject(NGXSecurizeInjectorEnv) private env: NGXSecurizeEnvType,
-    private resolver: NGXSecurizeResolver,
+    @Optional() @Inject(SECURIZE_INJECTOR_ENV) private env: SecurizeEnvType,
+    private resolver: SecurizeResolver,
   ) {
-    this.setConf(this.resolver[NGXSecurizeConfAccesor]());
+    this.setConf(this.resolver[SECURIZE_CONF_ACCESOR]());
     this.setEnv(this.env);
   }
 
   public check(arg: any): boolean {
-    return this[NGXSecurizeConfAccesor]().check(arg);
+    return this[SECURIZE_CONF_ACCESOR]().check(arg);
   }
 
-  public [NGXSecurizeEnvAccesor](): NGXSecurizeEnvType {
+  public [SECURIZE_ENV_ACCESOR](): SecurizeEnvType {
     return this._env;
   }
 
-  private setConf(c: NGXSecurizeAPI): void {
+  private setConf(c: SecurizeAPI): void {
     if (!c) {
       return;
     }
     this._conf = c;
   }
 
-  private setEnv(env: NGXSecurizeEnvType): void {
+  private setEnv(env: SecurizeEnvType): void {
     if (!env) {
       return;
     }
     this._env = env;
   }
 
-  private [NGXSecurizeConfAccesor](): NGXSecurizeAPI {
+  private [SECURIZE_CONF_ACCESOR](): SecurizeAPI {
     return this._conf;
   }
 }

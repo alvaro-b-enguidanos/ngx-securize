@@ -1,4 +1,4 @@
 import { NgModule } from '@angular/core';
 
 @NgModule()
-export class NGXSecurizeServicesModule {}
+export class SecurizeServicesModule {}

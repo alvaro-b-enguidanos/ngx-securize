@@ -1,33 +1,31 @@
 import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
-import { NGXSecurizeResolverAccesor } from './ngx-securize.constants';
-import { NGXSecurizeProvider } from './nxg-securize.models';
-import { NGXSecurizeService } from './services';
-import { NGXSecurizeServicesModule } from './services/ngx-securize.services.module';
+import { SECURIZE_RESOLVER_ACCESOR } from './ngx-securize.constants';
+import { SecurizeProvider } from './nxg-securize.models';
+import { SecurizeService } from './services';
+import { SecurizeServicesModule } from './services/ngx-securize.services.module';
 
 @NgModule({
-  imports: [NGXSecurizeServicesModule],
+  imports: [SecurizeServicesModule],
 })
-export class NGXSecurizeModule {
+export class SecurizeModule {
   static injector: Injector;
 
   constructor(injector: Injector) {
-    NGXSecurizeModule.injector = injector;
+    SecurizeModule.injector = injector;
   }
 
-  static [NGXSecurizeResolverAccesor](): NGXSecurizeService {
-    return this.injector?.get<NGXSecurizeService>(NGXSecurizeService);
+  static [SECURIZE_RESOLVER_ACCESOR](): SecurizeService {
+    return this.injector?.get<SecurizeService>(SecurizeService);
   }
 
-  static forRoot(
-    conf?: NGXSecurizeProvider
-  ): ModuleWithProviders<NGXSecurizeModule> {
+  static forRoot(conf?: SecurizeProvider): ModuleWithProviders<SecurizeModule> {
     if (!conf) {
       return {
-        ngModule: NGXSecurizeModule,
+        ngModule: SecurizeModule,
       };
     }
     return {
-      ngModule: NGXSecurizeModule,
+      ngModule: SecurizeModule,
       providers: [conf.useProvider],
     };
   }

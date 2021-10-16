@@ -1,20 +1,20 @@
 import { FactoryProvider } from '@angular/core';
 
-export interface NGXSecurizeAPI {
+export interface SecurizeAPI {
   check: (arg: any) => boolean;
 }
 
-export interface NGXSecurizeProvider {
+export interface SecurizeProvider {
   useProvider: FactoryProvider;
 }
 
-export interface NGXSecurizeMethodConf {
+export interface SecurizeMethodConf {
   debug?: boolean;
 }
 
-export enum NGXSecurizeEnvEnum {
+export enum SecurizeEnvEnum {
   TEST = 'TEST',
   PROD = 'PROD',
 }
 
-export type NGXSecurizeEnvType = NGXSecurizeEnvEnum.PROD | NGXSecurizeEnvEnum.TEST;
+export type SecurizeEnvType = SecurizeEnvEnum.PROD | SecurizeEnvEnum.TEST;
