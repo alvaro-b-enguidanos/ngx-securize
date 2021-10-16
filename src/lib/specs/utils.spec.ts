@@ -1,5 +1,5 @@
-import { NGXDefaultSecurizeMethodDecoratorConf } from '../ngx-securize.constants';
-import { NGXSecurizeMethodConf } from '../nxg-securize.models';
+import { DEFAULT_SECURIZE_METHOD_DECORATOR_CONF } from '../ngx-securize.constants';
+import { SecurizeMethodConf } from '../nxg-securize.models';
 import { defineAndSeal, initializeMethodDecoratorConf } from '../utils';
 
 describe('utils', () => {
@@ -14,20 +14,20 @@ describe('utils', () => {
   describe('--> initializeMethodDecoratorConf', () => {
     it('should exists', () => expect(initializeMethodDecoratorConf).toBeDefined());
     it('should merge', () => {
-      const gived: NGXSecurizeMethodConf = {
+      const gived: SecurizeMethodConf = {
         debug: true,
       };
-      const expected: NGXSecurizeMethodConf = {
+      const expected: SecurizeMethodConf = {
         debug: true,
       };
-      const received: NGXSecurizeMethodConf = initializeMethodDecoratorConf(gived);
+      const received: SecurizeMethodConf = initializeMethodDecoratorConf(gived);
       expect(received).toMatchObject(expected);
     });
 
     it('should return the default conf if no params provided', () => {
-      const gived: NGXSecurizeMethodConf = null;
-      const expected: NGXSecurizeMethodConf = NGXDefaultSecurizeMethodDecoratorConf;
-      const received: NGXSecurizeMethodConf = initializeMethodDecoratorConf(gived);
+      const gived: SecurizeMethodConf = null;
+      const expected: SecurizeMethodConf = DEFAULT_SECURIZE_METHOD_DECORATOR_CONF;
+      const received: SecurizeMethodConf = initializeMethodDecoratorConf(gived);
       expect(received).toMatchObject(expected);
     });
   });

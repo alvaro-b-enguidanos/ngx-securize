@@ -1,13 +1,13 @@
-import { NGXSecurizeEnvEnum, NGXSecurizeEnvType } from './nxg-securize.models';
-import { NGXSecurizeMethodConf } from './nxg-securize.models';
+import { SecurizeEnvEnum, SecurizeEnvType } from './nxg-securize.models';
+import { SecurizeMethodConf } from './nxg-securize.models';
 
-export const NGXSecurizeConfAccesor = Symbol('__NGXSecurizeConfAccesor__');
-export const NGXSecurizeEnvAccesor = Symbol('__NGXSecurizeEnvAccesor__');
-export const NGXSecurizeResolverAccesor = Symbol('__NGXSecurizeResolverAccesor__');
-export const NGXSecurizeFactoryAccesor = Symbol('__NGXSecurizeFactoryAccesor__');
+export const SECURIZE_CONF_ACCESOR = Symbol('__SECURIZE_CONF_ACCESOR__');
+export const SECURIZE_ENV_ACCESOR = Symbol('__SECURIZE_ENV_ACCESOR__');
+export const SECURIZE_RESOLVER_ACCESOR = Symbol('__SECURIZE_RESOLVER_ACCESOR__');
+export const SECURIZE_FACTORY_ACCESOR = Symbol('__SECURIZE_FACTORY_ACCESOR__');
 
-export const NGXSecurizeEnvTesting: NGXSecurizeEnvType = NGXSecurizeEnvEnum.TEST;
+export const SECURIZE_ENV_TESTING: SecurizeEnvType = SecurizeEnvEnum.TEST;
 
-export const NGXDefaultSecurizeMethodDecoratorConf: NGXSecurizeMethodConf = {
+export const DEFAULT_SECURIZE_METHOD_DECORATOR_CONF: SecurizeMethodConf = {
   debug: false,
 };

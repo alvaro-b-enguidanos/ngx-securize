@@ -1,11 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { NGXSecurizeEnvType } from './nxg-securize.models';
-import { NGXSecurizeAPI } from './nxg-securize.models';
+import { SecurizeEnvType } from './nxg-securize.models';
+import { SecurizeAPI } from './nxg-securize.models';
 
-export const NGXSecurizeInjector: InjectionToken<NGXSecurizeAPI> = new InjectionToken<NGXSecurizeAPI>(
-  'NGXSecurizeInjector',
-);
+export const SECURIZE_INJECTOR: InjectionToken<SecurizeAPI> = new InjectionToken<SecurizeAPI>('SECURIZE_INJECTOR');
 
-export const NGXSecurizeInjectorEnv: InjectionToken<NGXSecurizeEnvType> = new InjectionToken<NGXSecurizeEnvType>(
-  'NGXSecurizeInjectorEnv',
+export const SECURIZE_INJECTOR_ENV: InjectionToken<SecurizeEnvType> = new InjectionToken<SecurizeEnvType>(
+  'SECURIZE_INJECTOR_ENV',
 );

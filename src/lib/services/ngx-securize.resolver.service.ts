@@ -1,16 +1,16 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { NGXSecurizeConfAccesor } from '../ngx-securize.constants';
-import { NGXSecurizeInjector } from '../ngx-securize.injector';
-import { NGXSecurizeAPI } from '../nxg-securize.models';
-import { NGXSecurizeServicesModule } from './ngx-securize.services.module';
+import { SECURIZE_CONF_ACCESOR } from '../ngx-securize.constants';
+import { SECURIZE_INJECTOR } from '../ngx-securize.injector';
+import { SecurizeAPI } from '../nxg-securize.models';
+import { SecurizeServicesModule } from './ngx-securize.services.module';
 
 @Injectable({
-  providedIn: NGXSecurizeServicesModule,
+  providedIn: SecurizeServicesModule,
 })
-export class NGXSecurizeResolver {
-  constructor(@Optional() @Inject(NGXSecurizeInjector) private conf: NGXSecurizeAPI) {}
+export class SecurizeResolver {
+  constructor(@Optional() @Inject(SECURIZE_INJECTOR) private conf: SecurizeAPI) {}
 
-  public [NGXSecurizeConfAccesor](): NGXSecurizeAPI {
+  public [SECURIZE_CONF_ACCESOR](): SecurizeAPI {
     return this.conf;
   }
 }

@@ -16,7 +16,7 @@
   - [Considerations & Requisites](#considerations--requisites)
   - [Usage](#usage)
     - [Import](#import)
-    - [NGXSecurizeResolver](#ngxsecurizeresolver)
+    - [SecurizeResolver](#securizeresolver)
     - [Models](#models)
     - [Using the decorators](#using-the-decorators)
     - [Testing](#testing)
@@ -79,9 +79,9 @@ so, how the above code looks like with `ngx-securize`?
 const allowedRoles = ['read', 'write'];
 
 @Component({})
-@NGXSecurizeClass()
+@SecurizeClass()
 export class MyComponent {
-  @NGXSecurizeMethod(allowedRoles)
+  @SecurizeMethod(allowedRoles)
   someMethod() {
     // some logic
   }
@@ -102,20 +102,20 @@ The first step to use the library, is to import the module into your `app.module
 
 ```typescript
 // app.module.ts
-import { NGXSecurizeModule, NGXSecurizeResolver, NGXSecurizeAPI } from 'ngx-securize';
+import { SecurizeModule, SecurizeResolver, SecurizeAPI } from 'ngx-securize';
 
 const factory = (userService: UserService) => {
-  const providedApi: NGXSecurizeAPI = {
+  const providedApi: SecurizeAPI = {
     check: (role: string | string[]) => userService.userHasRole(role),
   };
-  return new NGXSecurizeResolver(providedApi);
+  return new SecurizeResolver(providedApi);
 };
 
 @NgModule({
   imports: [
-    NGXSecurizeModule.forRoot({
+    SecurizeModule.forRoot({
       useProvider: {
-        provide: NGXSecurizeResolver,
+        provide: SecurizeResolver,
         useFactory: factory,
         deps: [UserService],
       },
@@ -127,7 +127,7 @@ const factory = (userService: UserService) => {
 export class AppModule {}
 ```
 
-Note that the factory provided to the module, should return an `NGXSecurizeAPI` object. But the actual implementation is completly up to you.
+Note that the factory provided to the module, should return an `SecurizeAPI` object. But the actual implementation is completly up to you.
 
 In this example, i use a `UserService` that looks for an especific role/s, but you can configure the module with whatever is your need. Just be sure that if you use an angular service, you need to provide it into the `deps` array.
 
@@ -159,24 +159,24 @@ export class UserService {
 }
 ```
 
-### NGXSecurizeResolver
+### SecurizeResolver
 
 in this example:
 
 ```typescript
 // app.module.ts
 const factory = (userService: UserService) => {
-  const providedApi: NGXSecurizeAPI = {
+  const providedApi: SecurizeAPI = {
     check: (role: string | string[]) => userService.userHasRole(role),
   };
-  return new NGXSecurizeResolver(providedApi);
+  return new SecurizeResolver(providedApi);
 };
 ```
 
 ```typescript
 
 // xxx.component.ts
-  @NGXSecurizeMethod(['some:role'])
+  @SecurizeMethod(['some:role'])
   someMethod() {
     // some logic
   }
@@ -189,17 +189,17 @@ The implementation itself, is completely up to you. You can do something complet
 ```typescript
 // app.module.ts
 const factory = (userService: UserService) => {
-  const providedApi: NGXSecurizeAPI = {
+  const providedApi: SecurizeAPI = {
     check: (year: number) => userService.userIsOlderThanYears(years),
   };
-  return new NGXSecurizeResolver(providedApi);
+  return new SecurizeResolver(providedApi);
 };
 ```
 
 ```typescript
 
 // xxx.component.ts
-  @NGXSecurizeMethod(21)
+  @SecurizeMethod(21)
   someMethod() {
     // some logic
   }
@@ -208,7 +208,7 @@ const factory = (userService: UserService) => {
 ### Models
 
 ```typescript
-interface NGXSecurizeAPI {
+interface SecurizeAPI {
   check: (arg: any) => boolean;
 }
 ```
@@ -219,12 +219,12 @@ Once you configure the module, you are able to use the [decorators](./src/lib/de
 
 ### Testing
 
-In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is wat you want ), just import the `NGXSecurizeTestingModule` like so:
+In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is wat you want ), just import the `SecurizeTestingModule` like so:
 
 ```typescript
 TestBed.configureTestingModule({
   imports: [
-    NGXSecurizeTestingModule
+    SecurizeTestingModule
     ...,
   ],
   ...

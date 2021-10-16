@@ -1,31 +1,31 @@
 import { waitForAsync, TestBed } from '@angular/core/testing';
-import { NGXSecurizeAPI } from '../../nxg-securize.models';
-import { NGXSecurizeInjector } from '../../ngx-securize.injector';
-import { NGXSecurizeResolver } from '../ngx-securize.resolver.service';
-import { NGXSecurizeConfAccesor } from '../../ngx-securize.constants';
+import { SecurizeAPI } from '../../nxg-securize.models';
+import { SECURIZE_INJECTOR } from '../../ngx-securize.injector';
+import { SecurizeResolver } from '../ngx-securize.resolver.service';
+import { SECURIZE_CONF_ACCESOR } from '../../ngx-securize.constants';
 
-const api: NGXSecurizeAPI = {
+const api: SecurizeAPI = {
   check: (roles: string[]) => roles.includes('fakerol'),
 };
 
-describe('NGXSecurizeResolver', () => {
-  let service: NGXSecurizeResolver;
+describe('SecurizeResolver', () => {
+  let service: SecurizeResolver;
   describe('--> without config', () => {
     beforeEach(
       waitForAsync(() => {
         TestBed.configureTestingModule({
-          providers: [NGXSecurizeResolver],
+          providers: [SecurizeResolver],
         }).compileComponents();
       }),
     );
 
     beforeEach(() => {
-      service = TestBed.inject(NGXSecurizeResolver);
+      service = TestBed.inject(SecurizeResolver);
     });
 
     test('should exists', () => expect(service).toBeDefined());
     test('should have no conf', () => expect(service['conf']).toBeNull());
-    test('should have a [NGXSecurizeConfAccesor] method', () => expect(service[NGXSecurizeConfAccesor]()).toBeNull());
+    test('should have a [SECURIZE_CONF_ACCESOR] method', () => expect(service[SECURIZE_CONF_ACCESOR]()).toBeNull());
   });
 
   describe('--> with config', () => {
@@ -33,9 +33,9 @@ describe('NGXSecurizeResolver', () => {
       waitForAsync(() => {
         TestBed.configureTestingModule({
           providers: [
-            NGXSecurizeResolver,
+            SecurizeResolver,
             {
-              provide: NGXSecurizeInjector,
+              provide: SECURIZE_INJECTOR,
               useValue: api,
             },
           ],
@@ -44,11 +44,11 @@ describe('NGXSecurizeResolver', () => {
     );
 
     beforeEach(() => {
-      service = TestBed.inject(NGXSecurizeResolver);
+      service = TestBed.inject(SecurizeResolver);
     });
 
     test('should have no conf', () => expect(service['conf']).toMatchObject(api));
-    test('should have a [NGXSecurizeConfAccesor] method', () =>
-      expect(service[NGXSecurizeConfAccesor]()).toMatchObject(api));
+    test('should have a [SECURIZE_CONF_ACCESOR] method', () =>
+      expect(service[SECURIZE_CONF_ACCESOR]()).toMatchObject(api));
   });
 });

@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NGXSecurizeModule, NGXSecurizeResolver, NGXSecurizeAPI } from 'ngx-securize';
+import { SecurizeModule, SecurizeResolver, SecurizeAPI } from 'ngx-securize';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './user.service';
 
 const factory = (userService: UserService) => {
-  const providedApi: NGXSecurizeAPI = {
+  const providedApi: SecurizeAPI = {
     check: (role: string | string[]) => userService.userHasRole(role),
   };
-  return new NGXSecurizeResolver(providedApi);
+  return new SecurizeResolver(providedApi);
 };
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NGXSecurizeModule.forRoot({
+    SecurizeModule.forRoot({
       useProvider: {
-        provide: NGXSecurizeResolver,
+        provide: SecurizeResolver,
         useFactory: factory,
         deps: [UserService],
       },
