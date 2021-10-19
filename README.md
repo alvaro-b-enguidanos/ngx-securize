@@ -219,7 +219,7 @@ Once you configure the module, you are able to use the [decorators](./src/lib/de
 
 ### Testing
 
-In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is wat you want ), just import the `SecurizeTestingModule` like so:
+In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is what you want ), just import the `SecurizeTestingModule` like so:
 
 ```typescript
 TestBed.configureTestingModule({
@@ -234,3 +234,5 @@ TestBed.configureTestingModule({
 ## Author
 
 mail: alvaro.bellido.enguidanos+ngx_securize@gmail.com
+linkedIn: www.linkedin.com/in/alvaro-b-enguidanos
+medium (spanish): alvaro-b-enguidanos.medium.com

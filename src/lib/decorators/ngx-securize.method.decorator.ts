@@ -56,6 +56,7 @@ export const SecurizeMethod =
 
       descriptor.value = wrapped;
     } catch (error) {
+      /*istanbul ignore next*/
       console.error(`${context} (${propertyKey}) ==> ${error}`);
     }
   };
