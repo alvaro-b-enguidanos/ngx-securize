@@ -234,3 +234,5 @@ TestBed.configureTestingModule({
 ## Author
 
 mail: alvaro.bellido.enguidanos+ngx_securize@gmail.com
+linkedIn: www.linkedin.com/in/alvaro-b-enguidanos
+medium (spanish): alvaro-b-enguidanos.medium.com
