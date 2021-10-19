@@ -219,7 +219,7 @@ Once you configure the module, you are able to use the [decorators](./src/lib/de
 
 ### Testing
 
-In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is wat you want ), just import the `SecurizeTestingModule` like so:
+In other to ensure that the decorators allows you to call to all the methods ( in a test environment, is what you want ), just import the `SecurizeTestingModule` like so:
 
 ```typescript
 TestBed.configureTestingModule({

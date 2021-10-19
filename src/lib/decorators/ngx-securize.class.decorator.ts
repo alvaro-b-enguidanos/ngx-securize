@@ -12,6 +12,7 @@ export const SecurizeClass =
 
       defineAndSeal<T, () => SecurizeService>(constructor.prototype, serviceFactory, SECURIZE_FACTORY_ACCESOR);
     } catch (error) {
+      /*istanbul ignore next*/
       console.error(`:: SecurizeClass :: ${error}`);
     }
 
