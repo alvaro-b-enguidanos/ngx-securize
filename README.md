@@ -3,7 +3,7 @@
 [![QA](https://github.com/candyman00/ngx-securize/actions/workflows/QA.js.yml/badge.svg)](https://github.com/candyman00/ngx-securize/actions/workflows/QA.js.yml)
 [![publish](https://github.com/candyman00/ngx-securize/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/candyman00/ngx-securize/actions/workflows/npm-publish.yml)
 
-![Angular](https://badgen.net/badge/Angular/12/red)
+![Angular](https://badgen.net/badge/Angular/13/red)
 ![Node](https://badgen.net/badge/node/14/green)
 ![npm](https://badgen.net/badge/icon/6/green?icon=npm&label)
 
