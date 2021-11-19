@@ -21,7 +21,7 @@
     "prebuild": "npm run clean:dist",
     "build": "ng build",
     "test": "npm run coverage",
-    "test:app": "jest --config ./demo/jest.config.js --coverage",
+    "test:app": "jest --config ./demo/jest.config.ts --coverage",
     "test:dev": "npm run coverage -- --maxWorkers=50%",
     "coverage": "jest --coverage",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
