@@ -1,9 +1,12 @@
-module.exports = {
+const conf = {
   testURL: 'http://localhost',
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/src/setupJest.ts'],
+  moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
+  resolver: 'jest-preset-angular/build/resolvers/ng-jest-resolver.js',
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   transform: {
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg|gif)$': 'jest-transform-stub',
+    '^.+\\.(ts|js|mjs|html|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg|gif)$': 'jest-preset-angular',
   },
   testPathIgnorePatterns: ['/node_modules/', '<rootDir>/demo/', '<rootDir>/src/test.ts', '<rootDir>/dist/'],
   coveragePathIgnorePatterns: ['/node_modules/', '/src/jestGlobalMocks.ts', '/src/setupJest.ts'],
@@ -16,3 +19,5 @@ module.exports = {
     },
   },
 };
+
+export default conf;
