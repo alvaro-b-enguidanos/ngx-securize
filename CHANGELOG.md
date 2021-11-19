@@ -1,3 +1,9 @@
+## [13.0.1](https://github.com/candyman00/ngx-securize/compare/v13.0.0...v13.0.1) (2021-11-19)
+
+### Bug Fixes
+
+- **demo:** fix jest config ([09373dd](https://github.com/candyman00/ngx-securize/commit/09373ddc0e8df5d7fbe971388400349550ab9c15))
+
 # [13.0.0](https://github.com/candyman00/ngx-securize/compare/v0.1201.1...v13.0.0) (2021-11-19)
 
 ### Features
