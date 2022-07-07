@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SecurizeClass, SecurizeMethod } from 'ngx-securize';
 
 @Component({
-  selector: 'app-details',
-  template: `<div>welcome!!!</div>`,
+  selector: 'app-demo',
+  template: ` <div>welcome!!!</div> `,
 })
 @SecurizeClass()
-export class DetailsComponent implements OnInit {
+export class DemoComponent implements OnInit {
   ngOnInit() {
     this.say();
     this.say2('foo');
@@ -16,22 +16,22 @@ export class DetailsComponent implements OnInit {
 
   @SecurizeMethod(['read'])
   say() {
-    console.log('hi!');
+    console.log('hi! (should be executed)');
   }
 
   @SecurizeMethod(['write', 'delete'])
   say2(txt: string) {
-    console.log('hi2!', txt);
+    console.log('hi2! (should be executed)', txt);
   }
 
   @SecurizeMethod('write', {
     debug: true,
   })
   say3(txt: string) {
-    console.log('h3!', txt);
+    console.log('h3! (should be executed)', txt);
   }
 
-  @SecurizeMethod(['read'], {
+  @SecurizeMethod(['delete'], {
     debug: true,
   })
   say4(txt: string) {
