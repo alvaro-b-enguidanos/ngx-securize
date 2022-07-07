@@ -18,7 +18,6 @@ describe('DemoComponent', () => {
     fixture = TestBed.createComponent(DemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    jest.spyOn<any>(console, 'log').and.callFake((...args) => {});
   });
 
   test('should create the app', () => {
