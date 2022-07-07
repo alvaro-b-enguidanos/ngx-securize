@@ -1,0 +1,26 @@
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { paths } = require('./tsconfig.json').compilerOptions;
+
+// eslint-disable-next-line no-undef
+globalThis.ngJest = {
+  skipNgcc: false,
+  tsconfig: 'tsconfig.spec.json',
+};
+
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+module.exports = {
+  preset: 'jest-preset-angular',
+  globalSetup: 'jest-preset-angular/global-setup',
+  moduleNameMapper: pathsToModuleNameMapper(paths, { prefix: '<rootDir>' }),
+  setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/demo/', '<rootDir>/src/test.ts', '<rootDir>/dist/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/src/jestGlobalMocks.ts', '/src/setupJest.ts'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
+};
