@@ -1,3 +1,14 @@
+# [14.0.0](https://github.com/candyman00/ngx-securize/compare/v13.0.1...v14.0.0) (2022-07-07)
+
+### Features
+
+- **chore:** angular 14 ([c8e46f4](https://github.com/candyman00/ngx-securize/commit/c8e46f4154ab7c7b64a1eb3d24a1d9837b27bdf6))
+- **chore:** angular 14 BREAKING CHANGE: Angular 14 ([89006c1](https://github.com/candyman00/ngx-securize/commit/89006c1bf418bd79bd592f2c2134933455e5aa58))
+
+### BREAKING CHANGES
+
+- **chore:** ANGULAR 14
+
 ## [13.0.1](https://github.com/candyman00/ngx-securize/compare/v13.0.0...v13.0.1) (2021-11-19)
 
 ### Bug Fixes
