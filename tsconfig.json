@@ -15,9 +15,10 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2020",
     "module": "es2020",
     "types": ["node", "jest"],
-    "lib": ["es2021", "dom"]
+    "lib": ["es2021", "dom"],
+    "allowSyntheticDefaultImports": true
   }
 }

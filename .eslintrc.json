@@ -5,7 +5,7 @@
     "src/**/typings.d.ts",
     "src/**/test.ts",
     "src/jestGlobalMocks.ts",
-    "src/setupJest.ts"
+    "src/setup-jest.ts"
   ],
   "overrides": [
     {
